@@ -1,0 +1,83 @@
+/* Both split sign-in and the expandable introduction use the shared portrait. */
+.auth.auth-reference { --welcome-ease: cubic-bezier(.22, 1, .36, 1); }
+.auth-reference .auth-art { background: #163f36; color: #f6f4e7; }
+.auth-reference-scene { position: absolute; inset: auto 0 0; height: 61%; overflow: hidden; }
+.auth-reference-scene .welcome-illustration { width: 100%; height: 100%; overflow: visible; }
+.auth-reference .auth-art-copy { height: auto; min-width: 0; gap: clamp(26px, 5vh, 60px); padding: clamp(28px, 4vh, 48px) clamp(28px, 4vw, 64px); pointer-events: none; }
+.auth-reference .auth-art-logo { pointer-events: auto; align-self: flex-start; display: inline-flex; width: max-content; max-width: 100%; padding: 10px 16px; border-radius: 16px; background: #f6f4e7; isolation: isolate; }
+.auth-reference .auth-art-logo .logo { flex-wrap: nowrap; gap: 12px; }
+.auth-reference .auth-form :is(h1, h2, h3), .auth-reference .role-title { color: var(--primary); }
+.auth-reference .auth-art-text { max-width: 100%; }
+.auth-reference .auth-eyebrow { color: #b5dec6; font-size: .68rem; }
+.auth-reference .auth-tagline { color: #f6f4e7; font-size: clamp(1.6rem, 2.5vw, 2.6rem); line-height: 1.14; font-weight: 600; text-shadow: none; }
+.auth-reference .auth-tagline span { white-space: normal; }
+.auth-reference .auth-tagline .accent { color: #b5dec6; font-style: normal; font-weight: 800; }
+.auth-reference .auth-sub { color: #e5eee5; font-size: .9rem; max-width: 380px; }
+.auth-reference .intro-toggle { color: #163f36; background: #f6f4e7; border-color: #163f3625; min-width: 44px; height: 44px; }
+.auth-reference .intro-toggle:focus-visible { outline-color: #8ac9ac; }
+.auth.auth-reference.intro-full .auth-reference-scene { inset: 0; height: 100%; }
+.auth.auth-reference.intro-full .auth-art-copy { height: 100%; justify-content: center; padding: 100px 6% 90px 64%; }
+.auth.auth-reference.intro-full .auth-art-logo { left: 4.5%; top: 36px; }
+.auth.auth-reference.intro-full .auth-tagline { font-size: clamp(2rem, 3.2vw, 3.6rem); }
+.auth.auth-reference.intro-full .auth-sub { font-size: 1rem; }
+.auth.auth-reference.intro-full .intro-toggle { top: 36px; left: 95.5%; color: #163f36; background: #b5dec6; }
+.auth.auth-reference.intro-full .intro-toggle:hover { background: #ceeada; }
+.auth-hair-accents { display: none; position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.auth-hair-accents svg { position: absolute; overflow: visible; }
+@media (min-width: 1024px) {
+  .auth-reference.intro-full .auth-hair-accents { display: block; }
+  .auth-hair-accents-top { left: 49%; top: 7%; width: 30%; height: 19%; }
+  .auth-hair-accents-side { left: 47%; top: 31%; width: 5%; height: 42%; }
+  .auth-hair-accents-bottom { left: 47%; bottom: 2%; width: 29%; height: 24%; }
+  .auth.auth-reference.intro-full { height: 100svh; overflow: hidden; }
+  .auth.auth-reference.intro-full .auth-form-col { min-width: 0; padding: 0; height: 100svh; }
+}
+@media (min-width: 1024px) and (max-height: 720px) {
+  .auth-reference .auth-art-copy { gap: 20px; padding-top: 24px; }
+  .auth-reference .auth-tagline { font-size: 1.6rem; }
+  .auth-reference .auth-eyebrow { margin-bottom: 10px; }
+  .auth-reference .auth-sub { font-size: .82rem; }
+  .auth.auth-reference.intro-full .auth-tagline { font-size: 2.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .auth-reference, .auth-reference *, .auth-reference *::before, .auth-reference *::after { animation: none !important; transition: none !important; transition-property: none !important; }
+}
+
+/* Align the logo and copy over the continuous illustration. */
+@media (min-width: 1024px) {
+  .auth-reference .auth-reference-scene,
+  .auth.auth-reference.intro-full .auth-reference-scene {
+    inset: 0 auto 0 0;
+    width: min(100vw, 150svh);
+    height: 100svh;
+    mask-image: linear-gradient(to right, #000 72%, transparent 100%);
+  }
+  .auth-reference .auth-art-copy { position: static; padding: 130px 36px 0; }
+  .auth-reference .auth-art-logo,
+  .auth.auth-reference.intro-full .auth-art-logo { position: absolute; z-index: 3; top: 28px; left: 28px; padding: 0; background: transparent; }
+  .auth-reference .auth-art-text { position: relative; z-index: 1; width: 100%; max-width: 640px; margin-inline: auto; text-align: center; }
+  .auth-reference:not(.intro-full) .auth-art-copy { padding: 48px 28px 0 50%; }
+  .auth-reference:not(.intro-full) .auth-eyebrow { margin-bottom: 10px; }
+  .auth-reference:not(.intro-full) .auth-tagline { max-width: 14ch; margin: 0 auto 10px; font-size: clamp(1.25rem, 1.65vw, 1.85rem); }
+  .auth-reference:not(.intro-full) .auth-sub { font-size: .82rem; }
+  .auth-reference:not(.intro-full) .welcome-art-parallax { mask-image: linear-gradient(transparent 0 34%, #000 46%); }
+  .auth.auth-reference.intro-full .auth-art-text { background: #163f36; box-shadow: 0 0 32px 24px #163f36; }
+  .auth-reference .auth-tagline { font-size: clamp(1.45rem, 2.2vw, 2.4rem); line-height: 1.22; text-wrap: balance; gap: 3px; }
+  .auth-reference .auth-sub { max-width: 420px; margin-inline: auto; text-wrap: balance; }
+  .auth.auth-reference.intro-full .auth-art-copy { padding: 130px 5% 90px 54%; }
+  .auth.auth-reference.intro-full .auth-tagline { font-size: clamp(1.9rem, 3vw, 3rem); }
+  .auth.auth-reference.intro-full .intro-toggle { top: 28px; }
+  .auth-reference .auth-form > h1,
+  .auth-reference .auth-form > .subtitle { text-align: center; text-wrap: balance; }
+}
+@media (min-width: 1024px) and (max-height: 720px) {
+  .auth-reference .auth-art-copy { padding-top: 106px; }
+  .auth-reference:not(.intro-full) .auth-art-copy { padding-top: 36px; }
+  .auth-reference .auth-art-logo,
+  .auth.auth-reference.intro-full .auth-art-logo { top: 14px; }
+  .auth-reference .auth-tagline { font-size: 1.45rem; }
+  .auth.auth-reference.intro-full .intro-toggle { top: 20px; }
+}
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .auth-reference:not(.intro-full) .auth-art-copy { padding-top: 144px; }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#F8FAF8" />
+    <meta name="description" content="MindTrack — SMCBI Guidance Mental Health Monitoring System" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- use-credentials: the host only serves files to browsers that send its check cookie. -->
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="MindTrack" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="/launch-ribbon.webp" />
+    <link rel="preload" as="image" href="/launch-word.webp" />
+    <title>MindTrack</title>
+    <!-- Launch screen: the ribbon unrolls from left to right, then the MindTrack wordmark appears.
+         src/main.jsx fades the screen out once the app is ready; the full 8 seconds play once per visit. -->
+    <style>
+      #launch { position: fixed; inset: 0; z-index: 1000; display: grid; place-content: center; justify-items: center; gap: 18px; background: #f6f4e7; color: #28594c; font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif; text-align: center; transition: opacity .45s ease, visibility .45s; }
+      #launch.done { opacity: 0; visibility: hidden; pointer-events: none; }
+      .launch-logo { position: relative; width: min(80vw, 540px); aspect-ratio: 1451 / 515; }
+      .launch-logo img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+      .launch-ribbon { animation: launchRibbon 3.8s cubic-bezier(.4, 0, .25, 1) .5s both; }
+      .launch-word { animation: launchWord 1.4s cubic-bezier(.22, 1, .36, 1) 4.4s both; }
+      .launch-tag { margin: 0; font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; animation: launchWord 1.2s cubic-bezier(.22, 1, .36, 1) 5.6s both; }
+      @keyframes launchRibbon { from { clip-path: inset(-10% 100% -10% 0); } to { clip-path: inset(-10% 0 -10% 0); } }
+      @keyframes launchWord { from { opacity: 0; transform: translateY(10px); } }
+      /* Reloads: no intro, just the ribbon turning on the spot until the app is ready. */
+      .launch-loader { display: none; position: relative; perspective: 500px; padding-bottom: 18px; }
+      .launch-loader img { display: block; width: 84px; height: auto; animation: loaderTurn 1.5s cubic-bezier(.5, 0, .5, 1) infinite; }
+      .launch-loader::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 56px; height: 9px; margin-left: -28px; border-radius: 50%; background: #163f3626; animation: loaderShadow 1.5s cubic-bezier(.5, 0, .5, 1) infinite; }
+      .launch-quick .launch-logo, .launch-quick .launch-tag { display: none; }
+      .launch-quick .launch-loader { display: block; }
+      @keyframes loaderTurn { 0% { transform: translateY(0) rotateY(0); } 50% { transform: translateY(-8px) rotateY(180deg); } 100% { transform: translateY(0) rotateY(360deg); } }
+      @keyframes loaderShadow { 0%, 100% { transform: scaleX(1); opacity: 1; } 25%, 75% { transform: scaleX(.35); opacity: .6; } 50% { transform: scaleX(.8); opacity: .75; } }
+      @media (prefers-reduced-motion: reduce) { #launch * { animation: none !important; } }
+    </style>
+    <script>
+      try { if (sessionStorage.getItem('mindtrack.launchSeen')) document.documentElement.classList.add('launch-quick'); } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="launch" role="status" aria-label="MindTrack is loading">
+      <div class="launch-logo">
+        <img class="launch-ribbon" src="/launch-ribbon.webp" alt="" />
+        <img class="launch-word" src="/launch-word.webp" alt="" />
+      </div>
+      <p class="launch-tag">Small steps. A kinder you.</p>
+      <div class="launch-loader"><img src="/loader-ribbon.webp" alt="" /></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

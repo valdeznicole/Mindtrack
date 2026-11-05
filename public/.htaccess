@@ -1,0 +1,7 @@
+# Always check for the newest page shell, so a new deploy (and its launch screen) shows up right away.
+# The hashed files in /assets never change, so they can stay cached.
+<IfModule mod_headers.c>
+  <FilesMatch "^(index\.html|sw\.js|manifest\.json)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

@@ -1,0 +1,113 @@
+/* About page: the welcome screen's emerald, cream and mint carried through the whole page. */
+.about { --welcome-emerald: #163f36; --welcome-cream: #f6f4e7; --welcome-mint: #b5dec6; --welcome-ease: cubic-bezier(.22, 1, .36, 1); --sage-deep: #28594c; --ink-2: #4a5a52; background: var(--welcome-cream); color: var(--welcome-emerald); color-scheme: light; }
+.about :is(a, button):focus-visible { outline: 3px solid #8ac9ac; outline-offset: 4px; }
+.about :is(h2, h3) { color: var(--welcome-emerald); }
+
+/* Hero: the welcome layout with a longer headline and description. */
+.about-nav { display: flex; align-items: center; gap: 8px; }
+.about-link { min-height: 44px; display: inline-flex; align-items: center; padding: 10px 16px; border-radius: 999px; color: var(--welcome-cream); font-size: .88rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.about-link:hover { background: #f6f4e712; }
+.about-nav .welcome-button { min-height: 44px; padding: 10px 20px; }
+.about-hero .about-title { display: grid; gap: 2px; font-size: clamp(2rem, 3.1vw, 3.4rem); }
+.about-hero .welcome-description { max-width: 460px; }
+.about-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.about-actions.center { justify-content: center; }
+
+/* Sections on cream. The .about prefix lets these win over the base rules in styles.css, which loads later. */
+.about .eyebrow { color: #28594c; letter-spacing: .14em; }
+.about .about-card, .about .about-steps li, .about .about-band, .about .about-list li { background: #fffdf6; border: 1px solid #163f3618; box-shadow: 0 10px 28px #163f360f; }
+.about .about-card::before { background: #8ac9ac; }
+.about .about-card-icon, .about .about-list-icon, .about .about-band-icon, .about .about-band-icon.lavender { background: #dcefe2; }
+.about .about-step-n { background: var(--welcome-emerald); color: var(--welcome-cream); }
+.about .about-checks li::before { color: #28594c; }
+
+/* Counselor panel and closing call to action on emerald. */
+.about .about-split { background: var(--welcome-emerald); color: var(--welcome-cream); }
+.about .about-split .eyebrow { color: var(--welcome-mint); }
+.about .about-split h2 { color: var(--welcome-cream); }
+.about .about-split .about-section-lead { color: #e5eee5; }
+.about .about-split .about-list li { background: #f6f4e70f; border-color: #f6f4e725; box-shadow: none; }
+.about .about-split .about-list h3 { color: var(--welcome-cream); }
+.about .about-split .about-list p { color: #cfe0d4; }
+.about .about-split .about-list-icon { background: #28594c; }
+.about .about-cta { background: var(--welcome-emerald); color: var(--welcome-cream); }
+.about .about-cta h2 { color: var(--welcome-cream); font-weight: 500; letter-spacing: -.03em; }
+.about .about-foot { color: #4a5a52; }
+
+@media (max-width: 800px) {
+  .about-hero.welcome { min-height: 0; padding-bottom: 28px; }
+  .about-hero .about-title { font-size: clamp(1.75rem, 6.4vw, 2.6rem); }
+  .about-link { padding-inline: 10px; font-size: .78rem; }
+  .about-nav .welcome-button { flex: none; padding-inline: 14px; font-size: .78rem; }
+  .about-hero .welcome-actions .welcome-button-secondary { flex: 1; }
+}
+@media (max-width: 350px) {
+  .about-link { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about .welcome-button { transition: none; }
+}
+
+/* Wide screens: show the whole illustration at its drawn proportions instead of cropping its top, so the
+   logo stays on the cream corner; the copy sits in the open emerald space to the right of the hair. */
+@media (min-width: 801px) {
+  .about-hero.welcome { background: var(--welcome-emerald); }
+  .about-hero .welcome-art { inset: 0 auto 0 0; width: min(100%, 150svh); mask-image: linear-gradient(to right, #000 80%, transparent 100%); }
+  .about-hero .welcome-main { padding-left: calc(min(100vw, 150svh) * .64); padding-right: 4%; }
+  .about-hero .welcome-copy { max-width: 580px; }
+}
+/* Tall or narrow windows: keep the hero at the illustration's 3:2 shape so the hair never runs under the copy. */
+@media (min-width: 801px) and (max-aspect-ratio: 3/2) {
+  .about-hero.welcome { min-height: 66.7vw; }
+  .about-hero .welcome-header { min-height: 84px; }
+  .about-hero .welcome-main { padding-block: 8px 24px; padding-right: 3%; }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .about-hero .about-title { font-size: clamp(1.45rem, 2.9vw, 2rem); margin-bottom: 14px; }
+  .about-hero .welcome-eyebrow { font-size: .56rem; margin-bottom: 12px; }
+  .about-hero .welcome-description { font-size: .8rem; line-height: 1.6; margin-bottom: 18px; }
+  .about-hero .welcome-button { min-height: 44px; padding: 10px 16px; font-size: .8rem; }
+}
+
+/* Counselor panel: heading and button across the top, then six cream cards with large icons. */
+.about .about-split { display: block; padding: clamp(28px, 4.5vw, 56px); border-radius: 36px; position: relative; overflow: hidden; background: radial-gradient(120% 90% at 100% 0%, #28594c 0%, transparent 55%), var(--welcome-emerald); }
+.about .about-split > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 32px; align-items: end; margin-bottom: clamp(24px, 3.5vw, 40px); }
+.about .about-split > div > * { grid-column: 1; }
+.about .about-split > div > .welcome-button { grid-column: 2; grid-row: 1 / span 3; align-self: end; }
+.about .about-split h2 { font-size: clamp(1.7rem, 3.2vw, 2.6rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.12; max-width: 18ch; margin-bottom: 14px; }
+.about .about-split .about-section-lead { max-width: 620px; margin: 0; font-size: 1.02rem; line-height: 1.6; }
+.about .about-split .about-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.about .about-split .about-list li { flex-direction: column; align-items: flex-start; gap: 14px; padding: 24px 22px; border-radius: 24px; background: var(--welcome-cream); border: 0; box-shadow: 0 14px 30px #0a231d40; transition: transform .25s var(--welcome-ease), box-shadow .25s var(--welcome-ease); }
+.about .about-split .about-list-icon { width: 56px; height: 56px; border-radius: 18px; font-size: 2rem; background: #dcefe2; }
+.about .about-split .about-list h3 { color: var(--welcome-emerald); font-size: 1.1rem; margin-bottom: 6px; }
+.about .about-split .about-list p { color: #4a5a52; line-height: 1.55; }
+@media (hover: hover) {
+  .about .about-split .about-list li:hover { transform: translateY(-4px); box-shadow: 0 20px 36px #0a231d59; }
+}
+@media (max-width: 1023px) {
+  .about .about-split .about-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .about .about-split { border-radius: 28px; }
+  .about .about-split > div { grid-template-columns: 1fr; }
+  .about .about-split > div > .welcome-button { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 18px; }
+  .about .about-split .about-list { grid-template-columns: 1fr; gap: 12px; }
+  .about .about-split .about-list li { flex-direction: row; align-items: flex-start; padding: 18px; }
+  .about .about-split .about-list-icon { width: 48px; height: 48px; font-size: 1.7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about .about-split .about-list li { transition: none; }
+}
+
+/* The counselor section sits directly on the page (no green panel behind it). */
+.about .about-split { background: none; padding: 0; border-radius: 0; overflow: visible; color: var(--welcome-emerald); }
+.about .about-split .eyebrow { color: #28594c; }
+.about .about-split h2 { color: var(--welcome-emerald); }
+.about .about-split .about-section-lead { color: var(--ink-2); }
+.about .about-split .about-list li { background: #fffdf6; border: 1px solid #163f3618; box-shadow: 0 10px 28px #163f360f; }
+@media (hover: hover) {
+  .about .about-split .about-list li:hover { box-shadow: 0 16px 34px #163f3620; }
+}
+@media (max-width: 640px) {
+  .about .about-split { border-radius: 0; }
+}

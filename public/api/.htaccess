@@ -1,0 +1,12 @@
+Options -Indexes
+
+# Only the endpoints are reachable from the web; config and helpers are include-only.
+<FilesMatch "^(config|config\.sample|lib|mailer)\.php$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
